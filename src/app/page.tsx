@@ -7,6 +7,8 @@ export default function RegisterForm() {
   const [buyBottle, setBuyBottle] = useState(false);
   const [buyShoes, setBuyShoes] = useState(false);
   const [buyCap, setBuyCap] = useState(false);
+  const [plan,setPlan] = useState("");
+  const [gender,setGender] =useState("");
 
   const inputFnameOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFname(event.target.value);
@@ -15,6 +17,17 @@ export default function RegisterForm() {
   const inputLnameOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLname(event.target.value);
   };
+
+  const selectPlanOnChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setPlan(event.target.value);
+  };
+
+  const radioGenderMaleOnChange = () => {
+    setGender("male");
+  }
+  const radioGenderFemaleOnChange = () => {
+    setGender("female");
+  }
 
   const computeTotalPayment = () => {};
 
@@ -52,15 +65,33 @@ export default function RegisterForm() {
           Mini Marathon 10 Km (800 THB)
           Half Marathon 21 Km (1,200 THB)
           Full Marathon 42.195 Km (1,500 THB) */}
+          <select 
+            className="form-select"
+            onChange={selectPlanOnChange}
+            value={plan}>
+            <option value="">Please select...</option>
+            <option value="funrun">Fun run 5.5 Km (500 THB)</option>
+            <option value="mini">Mini Marathon 10 Km (800 THB)</option>
+            <option value="half">Half Marathon 21 Km (1,200 THB)</option>
+            <option value="full">Full Marathon 42.195 Km (1,500 THB)</option>
+          </select>
       </div>
 
       {/* Gender */}
       <div>
         <label className="form-label">Gender</label>
         <div>
-          <input className="me-2 form-check-input" type="radio" />
+          <input 
+            className="me-2 form-check-input" 
+            type="radio" 
+            onChange={radioGenderMaleOnChange} 
+            checked={gender == "male"}/>
           Male 👨
-          <input className="mx-2 form-check-input" type="radio" />
+          <input 
+            className="mx-2 form-check-input" 
+            type="radio" 
+            onChange={radioGenderFemaleOnChange} 
+            checked={gender == "female"}/>
           Female 👩
         </div>
       </div>
